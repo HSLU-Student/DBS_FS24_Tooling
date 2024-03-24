@@ -58,16 +58,22 @@ Write-Host "$("-"*25)`r`nInitializing tables`r`n$("-"*25)"
 
 # create tables
 $cd = "/var/lib/mysql-files/sql_scripts/noFKConstraints/"
+
 $file = "artist.sql"
 Invoke-SQL-File -FilePath "$cd$file"
+
 $file = "format.sql"
 Invoke-SQL-File -FilePath "$cd$file"
+
 $file = "track.sql"
 Invoke-SQL-File -FilePath "$cd$file"
+
 $file = "release.sql"
 Invoke-SQL-File -FilePath "$cd$file"
+
 $file = "release_format.sql"
 Invoke-SQL-File -FilePath "$cd$file"
+
 $file = "track_artist.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
@@ -112,6 +118,15 @@ if($AddConstraints -or $AllActions){
 Write-Host "$("-"*25)`r`nAdd constraints to tables`r`n$("-"*25)"
 $cd = "/var/lib/mysql-files/sql_scripts/constraints/"
 
+$file = "format.sql"
+Invoke-SQL-File -FilePath "$cd$file"
+
+$file = "artist.sql"
+Invoke-SQL-File -FilePath "$cd$file"
+
+$file = "release.sql"
+Invoke-SQL-File -FilePath "$cd$file"
+
 $file = "track.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
@@ -120,6 +135,12 @@ Invoke-SQL-File -FilePath "$cd$file"
 
 $file = "track_artist.sql"
 Invoke-SQL-File -FilePath "$cd$file"
+
+
+
+
+
+
 
 Write-Host "$("-"*25)`r`n All Constraints added`r`n$("-"*25)"
 
