@@ -6,5 +6,5 @@ FIELDS OPTIONALLY ENCLOSED BY '"'
 TERMINATED BY ';'
 LINES TERMINATED BY '\r\n'
 IGNORE 1 LINES
-(release_id, title, released,country, master_id)
+(id, title, released,country, master_id)
 ;
