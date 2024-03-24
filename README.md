@@ -5,13 +5,17 @@
 
 1. Change paths in table_data.csv to your local paths
 2. Setup .env Example given in [.env.example](./sql/.env.example)
-3. Execute in powershell:
+3. Enter directory
    ````
-   .sql/loadFiles.ps1
+   cd sql
    ````
-4. in powershell
+4. Execute in powershell:
    ````
-   .sql/loadFiles.ps1 -AllActions
+   .\loadFiles.ps1
+   ````
+5. in powershell
+   ````
+   .\loadFiles.ps1 -AllActions
    ````
 
 ### Description
