@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  mysql:
+    build: .
+    container_name: $MYSQL_SERVER_CONTAINER_NAME
+    environment:
+      MYSQL_ROOT_HOST: "%"
+      MYSQL_ROOT_PASSWORD: $ROOTPW
+      MYSQL_DATABASE: $DATABASE_NAME
+      command: --innodb-buffer-pool-size=10G
+      
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+      - ./load_data:/var/lib/mysql-files/
+    restart: always
+
+  adminer:
+    image: adminer
+    container_name: $ADMINER_CONTAINER_NAME
+    ports:
+        - "8080:8080"
+    restart: always

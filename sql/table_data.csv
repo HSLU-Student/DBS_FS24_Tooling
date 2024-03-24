@@ -1,0 +1,7 @@
+filename,source
+format.csv,"$LOCAL_PATH$\format.csv"
+artist.csv,"$LOCAL_PATH$\artist.csv"
+release.csv,"$LOCAL_PATH$\release.csv"
+track.csv,"$LOCAL_PATH$$\track.csv"
+release_format.csv,"$LOCAL_PATH$\release_format.csv"
+track_artist.csv,"$LOCAL_PATH$\track_artist.csv"
