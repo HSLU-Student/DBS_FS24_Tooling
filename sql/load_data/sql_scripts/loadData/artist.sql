@@ -7,6 +7,7 @@ LOAD DATA INFILE '/var/lib/mysql-files/table_data/artist.csv'
     TERMINATED BY ';'
     LINES TERMINATED BY '\r\n' 
     IGNORE 1 LINES
-    (id, name)
+    (id, @name)
+    SET title = LEFT(@name, 768);
 
 ;
