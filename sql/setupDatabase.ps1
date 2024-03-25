@@ -137,16 +137,48 @@ $file = "track_artist.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
 
-
-
-
-
-
 Write-Host "$("-"*25)`r`n All Constraints added`r`n$("-"*25)"
 
 }else{
     Write-Host "$("-"*25)`r`nSkipped adding constraints`r`n$("-"*25)"
 }
+
+
+
+if($ApplyDataTransformations -or $AllActions){
+    # add data transformations into tables
+    Write-Host "$("-"*25)`r`nExecute data transformations`r`n$("-"*25)"
+    $cd = "/var/lib/mysql-files/sql_scripts/transformations/"
+    
+    $file = "format.sql"
+    Invoke-SQL-File -FilePath "$cd$file"
+    
+    $file = "artist.sql"
+    Invoke-SQL-File -FilePath "$cd$file"
+    
+    $file = "release.sql"
+    Invoke-SQL-File -FilePath "$cd$file"
+    
+    $file = "track.sql"
+    Invoke-SQL-File -FilePath "$cd$file"
+    
+    $file = "release_format.sql"
+    Invoke-SQL-File -FilePath "$cd$file"
+    
+    $file = "track_artist.sql"
+    Invoke-SQL-File -FilePath "$cd$file"
+
+
+    Write-Host "$("-"*25)`r`n All transformations complete`r`n$("-"*25)"
+
+}else{
+    Write-Host "$("-"*25)`r`nSkipped data transormations`r`n$("-"*25)"
+}
+
+
+
+
+
 Write-Host "Script finished"
 
 
