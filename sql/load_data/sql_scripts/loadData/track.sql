@@ -7,6 +7,6 @@ SET NAMES utf8mb4;
     TERMINATED BY ';'
     LINES TERMINATED BY '\r\n'
     IGNORE 1 LINES
-    (id, release_id, title)
+    (id, release_id, @title)
     SET title = LEFT(@title, 768);
     ;

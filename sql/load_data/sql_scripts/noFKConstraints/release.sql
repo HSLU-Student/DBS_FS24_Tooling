@@ -10,7 +10,7 @@ SET NAMES utf8mb4;
 
 CREATE TABLE `release` (
   `id` int NOT NULL,
-  `title` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `title` varchar(768) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `released` varchar(10) DEFAULT NULL,
   `country` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `master_id` varchar(100) DEFAULT NULL
