@@ -9,7 +9,7 @@ USE `DtoS`;
 SET NAMES utf8mb4;
 
 CREATE TABLE `format` (
-  `id` int NOT NULL,
+  `format_id` int NOT NULL,
   `format` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
