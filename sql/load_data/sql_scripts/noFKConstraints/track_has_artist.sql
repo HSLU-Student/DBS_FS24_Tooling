@@ -8,7 +8,7 @@ USE `DtoS`;
 
 SET NAMES utf8mb4;
 
-CREATE TABLE `track_artist` (
+CREATE TABLE `track_has_artist` (
   `track_id` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci  ,
   `artist_id` int  ,
   `artist_name` varchar(768) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL

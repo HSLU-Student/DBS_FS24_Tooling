@@ -71,10 +71,10 @@ Invoke-SQL-File -FilePath "$cd$file"
 $file = "release.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
-$file = "release_format.sql"
+$file = "release_has_format.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
-$file = "track_artist.sql"
+$file = "track_has_artist.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
 
@@ -98,13 +98,13 @@ Invoke-SQL-File -FilePath "$cd$file"
 $file = "release.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
-$file = "release_format.sql"
+$file = "release_has_format.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
 $file = "track.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
-$file = "track_artist.sql"
+$file = "track_has_artist.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
 Write-Host "$("-"*25)`r`nData loaded into tables`r`n$("-"*25)"
@@ -130,10 +130,10 @@ Invoke-SQL-File -FilePath "$cd$file"
 $file = "track.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
-$file = "release_format.sql"
+$file = "release_has_format.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
-$file = "track_artist.sql"
+$file = "track_has_artist.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
 
@@ -162,10 +162,10 @@ if($ApplyDataTransformations -or $AllActions){
     $file = "track.sql"
     Invoke-SQL-File -FilePath "$cd$file"
     
-    $file = "release_format.sql"
+    $file = "release_has_format.sql"
     Invoke-SQL-File -FilePath "$cd$file"
     
-    $file = "track_artist.sql"
+    $file = "track_has_artist.sql"
     Invoke-SQL-File -FilePath "$cd$file"
 
 
