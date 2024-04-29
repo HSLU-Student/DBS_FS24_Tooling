@@ -1,0 +1,1 @@
+DELETE FROM dtos.artist WHERE search_name LIKE '%""%'

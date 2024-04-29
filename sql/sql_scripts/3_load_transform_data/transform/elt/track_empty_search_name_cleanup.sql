@@ -1,0 +1,1 @@
+DELETE FROM dtos.release WHERE search_name LIKE '%""%'

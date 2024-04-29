@@ -11,3 +11,4 @@ LOAD DATA INFILE '/var/lib/mysql-files/table_data/artist.csv'
     SET name = LEFT(@name, 768);
 
 ;
+

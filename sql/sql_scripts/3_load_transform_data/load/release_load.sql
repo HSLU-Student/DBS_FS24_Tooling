@@ -9,3 +9,4 @@ IGNORE 1 LINES
 (id, @title, released,country, master_id)
 SET title = LEFT(@title, 768);
 ;
+

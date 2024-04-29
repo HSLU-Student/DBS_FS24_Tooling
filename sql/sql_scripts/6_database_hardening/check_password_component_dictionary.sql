@@ -1,0 +1,1 @@
+SHOW STATUS LIKE 'validate_password.%';

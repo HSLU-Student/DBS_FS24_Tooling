@@ -1,5 +1,4 @@
--- Adminer 4.8.1 MySQL 8.0.36 dump
--- Erstellen der Release Tabelle
+-- release.sql - Erstellen der Release Tabelle
 SET NAMES utf8;
 SET time_zone = '+00:00';
 SET foreign_key_checks = 0;
@@ -11,10 +10,9 @@ SET NAMES utf8mb4;
 CREATE TABLE `release` (
   `release_id` int NOT NULL,
   `title` varchar(768) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `released` varchar(10) DEFAULT NULL,
+  `released` year DEFAULT NULL,
   `country` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `master_id` varchar(100) DEFAULT NULL
+  `master_id` varchar(100) DEFAULT NULL,
+  `search_name` varchar(768) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-
--- 2024-03-22 14:12:06
