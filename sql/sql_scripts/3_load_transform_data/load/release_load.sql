@@ -6,7 +6,7 @@ FIELDS OPTIONALLY ENCLOSED BY '"'
 TERMINATED BY ';'
 LINES TERMINATED BY '\r\n'
 IGNORE 1 LINES
-(id, @title, released,country, master_id)
+(id, @title, released)
 SET title = LEFT(@title, 768);
 ;
 
