@@ -57,24 +57,24 @@ if($InitTables -or $AllActions){
 Write-Host "$("-"*25)`r`nInitializing tables`r`n$("-"*25)"
 
 # create tables
-$cd = "/var/lib/mysql-files/sql_scripts/noFKConstraints/"
+$cd = "/var/lib/mysql-files/2_define_database_structure/tables/"
 
-$file = "artist.sql"
+$file = "artist_table.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
-$file = "format.sql"
+$file = "format_table.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
-$file = "track.sql"
+$file = "track_table.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
-$file = "release.sql"
+$file = "release_table.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
-$file = "release_format.sql"
+$file = "release_has_format_table.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
-$file = "track_artist.sql"
+$file = "track_has_artist_table.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
 
@@ -87,24 +87,24 @@ Write-Host "$("-"*25)`r`nInitialized all tables`r`n$("-"*25)"
 if($LoadData -or $AllActions){
 # load data into tables
 Write-Host "$("-"*25)`r`n load data into tables`r`n$("-"*25)"
-$cd = "/var/lib/mysql-files/sql_scripts/loadData/"
+$cd = "/var/lib/mysql-files/3_load_transform_data/load/"
 
-$file = "format.sql"
+$file = "format_load.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
-$file = "artist.sql"
+$file = "artist_load.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
-$file = "release.sql"
+$file = "release_load.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
-$file = "release_format.sql"
+$file = "release_has_format_load.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
-$file = "track.sql"
+$file = "track_load.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
-$file = "track_artist.sql"
+$file = "track_has_artist_load.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
 Write-Host "$("-"*25)`r`nData loaded into tables`r`n$("-"*25)"
@@ -116,24 +116,24 @@ Write-Host "$("-"*25)`r`nData loaded into tables`r`n$("-"*25)"
 if($AddConstraints -or $AllActions){
 # add constraints into tables
 Write-Host "$("-"*25)`r`nAdd constraints to tables`r`n$("-"*25)"
-$cd = "/var/lib/mysql-files/sql_scripts/constraints/"
+$cd = "/var/lib/mysql-files/2_define_database_structure/constraints/"
 
-$file = "format.sql"
+$file = "format_constraint.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
-$file = "artist.sql"
+$file = "artist_constraint.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
-$file = "release.sql"
+$file = "release_constraint.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
-$file = "track.sql"
+$file = "track_constraint.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
-$file = "release_format.sql"
+$file = "release_has_format_constraint.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
-$file = "track_artist.sql"
+$file = "track_has_artist_constraint.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
 
@@ -162,10 +162,10 @@ if($ApplyDataTransformations -or $AllActions){
     $file = "track.sql"
     Invoke-SQL-File -FilePath "$cd$file"
     
-    $file = "release_format.sql"
+    $file = "release_has_format.sql"
     Invoke-SQL-File -FilePath "$cd$file"
     
-    $file = "track_artist.sql"
+    $file = "track_has_artist.sql"
     Invoke-SQL-File -FilePath "$cd$file"
 
 

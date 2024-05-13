@@ -10,3 +10,4 @@ LOAD DATA INFILE '/var/lib/mysql-files/table_data/format.csv'
     (id, format)
 
 ;
+
