@@ -1,0 +1,19 @@
+{
+    "user_id": 0,
+    "username": "",
+    "playlists": [
+        {
+            "playlist_id": 0,
+            "name": "",
+            "playlist_tracks": [
+                {
+                    "track_id": 0,
+                    "track_name": "",
+                    "track_search_name": "",
+                    "artist_name": "",
+                    "artist_search_name": ""
+                }
+            ]
+        }
+    ]
+}
