@@ -77,19 +77,19 @@ Invoke-SQL-File -FilePath "$cd$file"
 $file = "track_has_artist_table.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
-$file = "spotify_user.sql"
+$file = "spotify_user_table.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
-$file = "spotify_playlist.sql"
+$file = "spotify_playlist_table.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
-$file = "spotify_track.sql"
+$file = "spotify_track_table.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
-$file = "spotify_playlist_has_spotify_track.sql"
+$file = "spotify_playlist_has_spotify_track_table.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
-$file = "spotify_artist.sql"
+$file = "spotify_artist_table.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
 
