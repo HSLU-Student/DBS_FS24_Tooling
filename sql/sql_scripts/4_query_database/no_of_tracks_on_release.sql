@@ -1,3 +1,4 @@
+USE dtos;
 SELECT DISTINCT
 r.title AS `Release Title`,
 f.format AS `Format`,
