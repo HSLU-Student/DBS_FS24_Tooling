@@ -77,6 +77,21 @@ Invoke-SQL-File -FilePath "$cd$file"
 $file = "track_has_artist_table.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
+$file = "spotify_user.sql"
+Invoke-SQL-File -FilePath "$cd$file"
+
+$file = "spotify_playlist.sql"
+Invoke-SQL-File -FilePath "$cd$file"
+
+$file = "spotify_track.sql"
+Invoke-SQL-File -FilePath "$cd$file"
+
+$file = "spotify_playlist_has_spotify_track.sql"
+Invoke-SQL-File -FilePath "$cd$file"
+
+$file = "spotify_artist.sql"
+Invoke-SQL-File -FilePath "$cd$file"
+
 
 Write-Host "$("-"*25)`r`nInitialized all tables`r`n$("-"*25)"
 
@@ -134,6 +149,21 @@ $file = "release_has_format_constraint.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
 $file = "track_has_artist_constraint.sql"
+Invoke-SQL-File -FilePath "$cd$file"
+
+$file = "spotify_user_constraint.sql"
+Invoke-SQL-File -FilePath "$cd$file"
+
+$file = "spotify_playlist_constraint.sql"
+Invoke-SQL-File -FilePath "$cd$file"
+
+$file = "spotify_track_constraint.sql"
+Invoke-SQL-File -FilePath "$cd$file"
+
+$file = "spotify_playlist_has_spotify_track_constraint.sql"
+Invoke-SQL-File -FilePath "$cd$file"
+
+$file = "spotify_artist_constraint.sql"
 Invoke-SQL-File -FilePath "$cd$file"
 
 
