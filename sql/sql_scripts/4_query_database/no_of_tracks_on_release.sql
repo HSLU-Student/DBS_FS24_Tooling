@@ -30,6 +30,8 @@ JOIN spotify_user su ON sp.user_id = su.user_id
 
 -- Filter & Playlist
 WHERE su.user_name = 'TheKetio' AND sp.name = 'diesdas'
+-- Filter Artist
+AND a.name = 'The Animals'
 -- Filter Format
 AND f.format = 'Vinyl' 
 -- Filter Release year
