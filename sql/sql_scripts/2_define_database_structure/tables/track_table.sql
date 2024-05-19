@@ -13,5 +13,3 @@ CREATE TABLE `track` (
   `title` varchar(768) DEFAULT NULL,
   `search_name` varchar(768) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-
