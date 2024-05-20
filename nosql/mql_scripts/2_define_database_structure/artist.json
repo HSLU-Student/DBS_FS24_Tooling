@@ -1,18 +1,20 @@
 {
-    "artist_id":0,
-    "name": "",
-    "search_name": "",
-    "tracks": [
-        {
-            "track_id": "",
-            "title": "",
-            "search_name": "",
-            "release": {
-                "release_id": 0,
+    "artist":{
+       "artist_id":0,
+        "name": "",
+        "search_name": "",
+        "tracks": [
+            {
+                "track_id": "",
                 "title": "",
-                "released": 0,
-                "formats": [""]
+                "search_name": "",
+                "release": {
+                    "release_id": 0,
+                    "title": "",
+                    "released": 0,
+                    "formats": [""]
+                }   
             }
-        }
-    ]
+        ]
+    }
 }
