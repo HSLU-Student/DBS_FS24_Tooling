@@ -4,19 +4,14 @@
     "search_name": "",
     "tracks": [
         {
-            "track_id": 0,
+            "track_id": "",
             "title": "",
             "search_name": "",
             "release": {
                 "release_id": 0,
                 "title": "",
                 "released": 0,
-                "formats": [
-                    {
-                        "format_id": 0,
-                        "format": ""
-                    }
-                ]
+                "formats": [""]
             }
         }
     ]
