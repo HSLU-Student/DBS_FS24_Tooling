@@ -14,5 +14,6 @@ db.artists.aggregate([
                 }
             }
         }
-    }
+    },
+    {$out: "artists"}
 ])
