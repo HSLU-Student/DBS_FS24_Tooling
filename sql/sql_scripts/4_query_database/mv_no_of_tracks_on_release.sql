@@ -1,17 +1,17 @@
 USE dtos;
 
 SELECT DISTINCT
-    mv.title AS `Release Title`,
+    mv.release_title AS `Release Title`,
     mv.format AS `Format`,
     mv.released AS `Release Year`,
-    CONCAT ("https://discogs.com/sell/release/", r.release_id) AS `Buy on Dicogs`,
+    CONCAT ("https://discogs.com/sell/release/", mv.release_id) AS `Buy on Dicogs`,
     COUNT(*) AS `Tracks from playlist in release`
 FROM
     materialized_view mv
     JOIN spotify_track st ON mv.track_search_name = st.search_name
     -- Join spotify_artist on spotify_track (lookup by search_name)
     JOIN spotify_artist sa ON st.artist_id = sa.artist_id
-    and a.search_name = sa.search_name
+    and mv.artist_search_name = sa.search_name
     -- Join spotify_playlist_has_spotify_track & spotify_track
     JOIN spotify_playlist_has_spotify_track sphst on st.track_id = sphst.track_id
     -- Join spotify_playlist & spotify_playlist_has_spotify_track 
@@ -30,8 +30,10 @@ WHERE
     AND mv.released >= '1901'
     -- Group releases with multiple tracks
 GROUP BY
-    f.format,
-    r.release_id
+    mv.release_title,
+    mv.format,
+    mv.released,
+    mv.release_id
     -- Release with most tracks from playlist, show ontop
 ORDER BY
     COUNT(*) DESC
