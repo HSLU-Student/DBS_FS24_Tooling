@@ -1,6 +1,6 @@
 use('dtos')
 
-db.artists2.aggregate([
+db.artists.aggregate([
     {
         $unwind: {
           path: "$artist.tracks"
