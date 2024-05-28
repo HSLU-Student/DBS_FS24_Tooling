@@ -13,6 +13,9 @@ db.spotify_users2.aggregate([
     //unwind all playlist tracks
     { $unwind: "$spotify_user.playlists.playlist_tracks" },
 
+    //optional! filter on artist by removing all documents not having the selected artist
+    { $match: { "spotify_user.playlists.playlist_tracks.artist_name": "The Animals" } },
+
     //optional! filter by track by removing all documents not having the selected track name 
     { $match: { "spotify_user.playlists.playlist_tracks.track_title": "House of the Rising Sun" } },
     
@@ -58,7 +61,7 @@ db.spotify_users2.aggregate([
     //optional! filtering on year
     { $match: { "release.release.released": {$gte: 1999}}},
 
-    //optional filtering on format
+    //optional! filtering on format
     { $match: { "release.release.formats": { $in: ["CD"] } } }
     
     //will add the project stage, as needed in metabase

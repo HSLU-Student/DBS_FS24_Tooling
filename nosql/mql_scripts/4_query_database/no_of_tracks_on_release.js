@@ -12,6 +12,9 @@ db.spotify_users2.aggregate([
 
     //unwind all playlist tracks
     { $unwind: "$spotify_user.playlists.playlist_tracks" },
+
+    //optional! filter on artist by removing all documents not having the selected artist
+    { $match: { "spotify_user.playlists.playlist_tracks.artist_name": "The Animals" } },
     
     //set the playlist tracks as new root to flatten the structure
     { $replaceRoot: { newRoot: "$spotify_user.playlists.playlist_tracks" } },
@@ -58,14 +61,14 @@ db.spotify_users2.aggregate([
     //optional filtering on format
     { $match: { "release.release.formats": { $in: ["CD"] } } },
     
-    //group by release_id
+    //group same releases - need to check if we want to match by format aswell (so wie can differ if the user selects multiple formats in metabase)
     { $group: {
-        _id: "$release.release.release_id",
-        title: "$release.title",
-        artist_name: "$release.artist_name",
+        _id: { release_id: "$release.release.release_id", title: "$release.title" },
         no_of_tracks: {$sum: 1}
     }},
 
     //sort by no_of_tracks
-    { $sort: { "release.no_of_tracks": -1 } }
+    { $sort: { "no_of_tracks": -1 } }
+
+    //will add the project stage, as needed in metabase
 ])
