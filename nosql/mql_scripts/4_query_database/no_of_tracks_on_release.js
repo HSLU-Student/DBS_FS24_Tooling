@@ -1,6 +1,6 @@
 use('dtos')
 
-db.spotify_users2.aggregate([
+db.spotify_users.aggregate([
     //find the user in the spotify DB
     { $match: { "spotify_user.username": "TheKetio" } },
 
@@ -21,7 +21,7 @@ db.spotify_users2.aggregate([
 
     //lookup possible artists foreach track. If we can't find any objects here, this means the requested artist is not stored in our database.
     { $lookup: {
-          from: "artists2",
+          from: "artists",
           localField: "artist_search_name",
           foreignField: "artist.search_name",
           as: "matched_artists"
