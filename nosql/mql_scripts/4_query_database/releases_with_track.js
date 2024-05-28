@@ -46,8 +46,7 @@ db.spotify_users2.aggregate([
     { $unwind: "$matched_artists.artist.tracks" },
 
     //restructure in clean document, we can filter on & project the wished fields from
-    {
-        $replaceWith: {
+    { $replaceWith: {
             release: {
                 "title": "$track_title",
                 "artist": "$artist_name",
