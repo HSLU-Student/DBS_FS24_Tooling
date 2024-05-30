@@ -62,7 +62,15 @@ db.spotify_users.aggregate([
     { $match: { "release.release.released": {$gte: 1999}}},
 
     //optional! filtering on format
-    { $match: { "release.release.formats": { $in: ["CD"] } } }
+    { $match: { "release.release.formats": { $in: ["CD"] } } },
+
+    //add the discogs marketplace link
+    { $addFields: {
+            "release.url": {
+                $concat: ["discogs.com/sell/release/", { $toString: "$release.release.release_id" }]
+            }
+        }
+    }
     
     //will add the project stage, as needed in metabase
 ])

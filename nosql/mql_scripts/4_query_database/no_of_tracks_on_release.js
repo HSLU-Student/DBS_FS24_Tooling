@@ -54,18 +54,26 @@ db.spotify_users.aggregate([
             } 
         }
     },
-    
+
     //optional! filtering on year
     { $match: { "release.release.released": {$gte: 1999}}},
 
     //optional filtering on format
     { $match: { "release.release.formats": { $in: ["CD"] } } },
-    
+
     //group same releases - need to check if we want to match by format aswell (so wie can differ if the user selects multiple formats in metabase)
     { $group: {
-        _id: { release_id: "$release.release.release_id", title: "$release.title" },
+        _id: { release_id: "$release.release.release_id", title: "$release.release.title" },
         no_of_tracks: {$sum: 1}
     }},
+
+    //add the discogs marketplace link
+    { $addFields: {
+            "url": {
+                $concat: ["discogs.com/sell/release/", { $toString: "$_id.release_id" }]
+            }
+        }
+    },
 
     //sort by no_of_tracks
     { $sort: { "no_of_tracks": -1 } }
