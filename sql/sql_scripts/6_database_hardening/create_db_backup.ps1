@@ -19,5 +19,5 @@ Invoke-Expression -Command "tar -czf dbbackup-$BackupTime.tar.bz2 ./dbbackup-$Ba
 Remove-Item "dbbackup-$BackupTime.sql"
 
 # Encrypt Backups
-Invoke-Expression -Command "gpg --sign --encrypt --batch -r '<RECIPIENT>' --output 'dbbackup-$BackupTime.tar.bz2.gpg' dbbackup-$BackupTime.tar.bz2"
+Invoke-Expression -Command "gpg --sign --encrypt --batch --local-user '<CERT USED FOR SIGNING>' --recipient '<CERT USED FOR ENCRYPTION>' --output 'dbbackup-$BackupTime.tar.bz2.gpg' dbbackup-$BackupTime.tar.bz2"
 Remove-Item "dbbackup-$BackupTime.tar.bz2"
