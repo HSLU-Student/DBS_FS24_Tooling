@@ -8,6 +8,7 @@ db.artists.aggregate([
         $project: {
             tracks: {
                 _id: 0,
+                artist_id: 0,
                 release_id: 0,
                 release: {
                     _id: 0,
