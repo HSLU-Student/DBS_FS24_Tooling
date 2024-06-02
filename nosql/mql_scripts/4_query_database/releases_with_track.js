@@ -70,7 +70,17 @@ db.spotify_users.aggregate([
                 $concat: ["discogs.com/sell/release/", { $toString: "$release.release.release_id" }]
             }
         }
-    }
+    },
     
-    //will add the project stage, as needed in metabase
+    //project to desired output
+    //TODO fix format Array in Output
+    { $project: {
+            "Track Title": "$release.title",
+            "Artist Name": "$release.artist",
+            "Release Title": "$release.release.title",
+            "Format": "$release.release.formats",
+            "Release Year": "$release.release.released",
+            "Buy On Discogs": "$release.url"
+        }
+    }
 ])

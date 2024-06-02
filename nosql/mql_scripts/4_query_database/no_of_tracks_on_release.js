@@ -76,7 +76,17 @@ db.spotify_users.aggregate([
     },
 
     //sort by no_of_tracks
-    { $sort: { "no_of_tracks": -1 } }
+    { $sort: { "no_of_tracks": -1 } },
 
-    //will add the project stage, as needed in metabase
+    //project to desired output
+    //TODO fix format & release year
+    { $project: {
+            "_id": 0,
+            "Release Title": "$_id.title",
+            "Format": "$_id.formats",
+            "Release Year": "$released",
+            "Tracks from Playlist in Release": "$no_of_tracks",
+            "Buy on Discogs": "$url"
+        }
+    }
 ])
