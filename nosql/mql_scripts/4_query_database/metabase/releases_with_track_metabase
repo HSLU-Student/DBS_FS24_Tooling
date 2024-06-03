@@ -1,0 +1,92 @@
+[
+    { $match: {{SpotifyUser}} },
+
+    {$unwind: "$spotify_user.playlists"},
+
+    { $match: { "spotify_user.playlists.name": {{Playlist}} } },
+
+    { $unwind: "$spotify_user.playlists.playlist_tracks" },
+
+    [[{ $match: { "spotify_user.playlists.playlist_tracks.artist_name": {{Artist}} } },]]
+
+    [[{ $match: { "spotify_user.playlists.playlist_tracks.track_title": {{TrackTitle}} } },]]
+    
+    { $replaceRoot: { newRoot: "$spotify_user.playlists.playlist_tracks" } },
+
+    { $lookup: {
+          from: "artists",
+          localField: "artist_search_name",
+          foreignField: "artist.search_name",
+          as: "matched_artists"
+        }
+    },
+
+    { $unwind: "$matched_artists" },
+    
+    { $set: {
+            "matched_artists.artist.tracks": {
+                $filter: {
+                    input: "$matched_artists.artist.tracks",
+                    cond: { $eq: ["$$this.search_name", "$track_search_name"]}
+                } 
+            }
+        }
+    },
+    
+    { $unwind: "$matched_artists.artist.tracks" },
+
+    { $replaceWith: {
+            release: {
+                "title": "$track_title",
+                "artist": "$artist_name",
+                "release": "$matched_artists.artist.tracks.release" 
+            } 
+        }
+    },
+    
+    [[{ $match: { "release.release.released": {$gt:{{Released}}}}},]]
+    
+    { $unwind: "$release.release.formats" },
+
+    [[{ $match: { "release.release.formats":{{Format}}}},]]
+
+    { $addFields: {
+            "release.url": {
+                $concat: ["discogs.com/sell/release/", { $toString: "$release.release.release_id" }]
+            }
+        }
+    },
+    
+    { $project: {
+            "Track Title": "$release.title",
+            "Artist Name": "$release.artist",
+            "Release Title": "$release.release.title",
+            "Format": "$release.release.formats",
+            "Release Year": "$release.release.released",
+            "Buy On Discogs": "$release.url"
+        }
+    }
+    
+    { $group: {
+            _id: {
+                "Track Title": "$Track Title",
+                "Artist Name": "$Artist Name",
+                "Release Title": "$Release Title",
+                "Format": "$Format",
+                "Release Year": "$Release Year",
+                "Buy On Discogs": "$Buy On Discogs"
+            }
+        }
+    },
+
+    { $project: {
+            _id: 0,
+            "Track Title": "$_id.Track Title",
+            "Artist Name": "$_id.Artist Name",
+            "Release Title": "$_id.Release Title",
+            "Format": "$_id.Format",
+            "Release Year": "$_id.Release Year",
+            "Buy On Discogs": "$_id.Buy On Discogs"
+        }
+    }
+]
