@@ -4,7 +4,7 @@ SELECT DISTINCT
     materialized_view.release_title AS `Release Title`,
     materialized_view.format AS `Format`,
     materialized_view.released AS `Release Year`,
-    CONCAT ("discogs.com/sell/release/", materialized_view.release_id) AS `Buy On Dicogs`
+    CONCAT ("https://discogs.com/sell/release/", materialized_view.release_id) AS `Buy On Dicogs`
 FROM
     materialized_view
     JOIN spotify_track ON materialized_view.track_search_name = spotify_track.search_name
@@ -29,3 +29,5 @@ WHERE
     AND {{Format}}]]
     [[-- Filter Release year
     AND materialized_view.released > {{Released}}]]
+ORDER BY 
+    release_title

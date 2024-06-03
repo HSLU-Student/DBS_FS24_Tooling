@@ -52,41 +52,33 @@
 
     { $addFields: {
             "release.url": {
-                $concat: ["discogs.com/sell/release/", { $toString: "$release.release.release_id" }]
+                $concat: ["https://discogs.com/sell/release/", { $toString: "$release.release.release_id" }]
             }
         }
     },
-    
-    { $project: {
-            "Track Title": "$release.title",
-            "Artist Name": "$release.artist",
-            "Release Title": "$release.release.title",
-            "Format": "$release.release.formats",
-            "Release Year": "$release.release.released",
-            "Buy On Discogs": "$release.url"
-        }
-    }
     
     { $group: {
             _id: {
-                "Track Title": "$Track Title",
-                "Artist Name": "$Artist Name",
-                "Release Title": "$Release Title",
-                "Format": "$Format",
-                "Release Year": "$Release Year",
-                "Buy On Discogs": "$Buy On Discogs"
+                "track_title": "$release.title",
+                "release_artist": "$release.artist",
+                "release_title": "$release.release.title",
+                "format": "$release.release.formats",
+                "released": "$release.release.released",
+                "url": "$release.url"
             }
         }
     },
-
+    
+    { $sort: {"_id:release_title": 1}},
+    
     { $project: {
             _id: 0,
-            "Track Title": "$_id.Track Title",
-            "Artist Name": "$_id.Artist Name",
-            "Release Title": "$_id.Release Title",
-            "Format": "$_id.Format",
-            "Release Year": "$_id.Release Year",
-            "Buy On Discogs": "$_id.Buy On Discogs"
+            "Track Title": "$_id.track_title",
+            "Artist Name": "$_id.release_artist",
+            "Release Title": "$_id.release_title",
+            "Format": "$_id.format",
+            "Release Year": "$_id.released",
+            "Buy On Discogs": "$_id.url"
         }
     }
 ]

@@ -50,26 +50,31 @@
     [[{ $match: { "release.release.formats":{{Format}} } },]]
 
     { $group: {
-        _id: { release_id: "$release.release.release_id", title: "$release.release.title",formats:"$release.release.formats",released:"$release.release.released" },
+        _id: { 
+            "release_id": "$release.release.release_id",
+            "title": "$release.release.title",
+            "formats":"$release.release.formats",
+            "released":"$release.release.released" 
+        },
         no_of_tracks: {$sum: 1}
     }},
 
     { $addFields: {
             "url": {
-                $concat: ["discogs.com/sell/release/", { $toString: "$_id.release_id" }]
+                $concat: ["https://discogs.com/sell/release/", { $toString: "$_id.release_id" }]
             }
         }
     },
 
-    { $sort: { "no_of_tracks": -1 } },
+    { $sort: { "no_of_tracks": -1, "_id.title": 1 } },
     
     { $project: {
             "_id": 0
             "Release Title": "$_id.title",
             "Format": "$_id.formats",
             "Release Year": "$_id.released",
-            "Tracks from Playlist in Release": "$no_of_tracks",
-            "Buy on Discogs": "$url"
+            "Buy on Discogs": "$url",
+            "Tracks from Playlist in Release": "$no_of_tracks"
         }
     }
 ]

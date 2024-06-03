@@ -3,7 +3,7 @@ SELECT DISTINCT
     materialized_view.format AS `Format`,
     materialized_view.released AS `Release Year`,
     CONCAT ("https://discogs.com/sell/release/", materialized_view.release_id) AS `Buy on Dicogs`,
-    COUNT(*) AS `Tracks from playlist in release`
+    COUNT(*) AS `Tracks from Playlist in Release`
 FROM
     materialized_view
     JOIN spotify_track st ON materialized_view.track_search_name = st.search_name
@@ -34,4 +34,4 @@ GROUP BY
     materialized_view.released
     -- Release with most tracks from playlist, show ontop
 ORDER BY
-    COUNT(*) DESC
+    COUNT(*) DESC ,release_title
