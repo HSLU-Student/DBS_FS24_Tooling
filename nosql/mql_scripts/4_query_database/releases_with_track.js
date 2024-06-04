@@ -5,7 +5,7 @@ db.spotify_users.aggregate([
     { $match: { "spotify_user.username": "TheKetio" } },
 
     //unwind all user playlists
-    {$unwind: "$spotify_user.playlists"},
+    { $unwind: "$spotify_user.playlists" },
 
     //match only the selected playlist
     { $match: { "spotify_user.playlists.name": "diesdas" } },
@@ -22,7 +22,7 @@ db.spotify_users.aggregate([
     //set the playlist tracks as new root to flatten the structure
     { $replaceRoot: { newRoot: "$spotify_user.playlists.playlist_tracks" } },
 
-    //lookup possible artists foreach track. If we can't find any objects here, this means the requested artist is not stored in our database.
+    //lookup possible artists foreach track. 
     { $lookup: {
           from: "artists",
           localField: "artist_search_name",
@@ -45,7 +45,7 @@ db.spotify_users.aggregate([
         }
     },
     
-    //one last unwinding into all release documents
+    //unwinding into all release documents
     { $unwind: "$matched_artists.artist.tracks" },
 
     //restructure in clean document, we can filter on & project the wished fields from
@@ -59,10 +59,13 @@ db.spotify_users.aggregate([
     },
     
     //optional! filtering on year
-    { $match: { "release.release.released": {$gte: 1999}}},
+    { $match: { "release.release.released": {$gte: 1901}}},
+
+    //unwinding into release formats
+    { $unwind: "$release.release.formats" },
 
     //optional! filtering on format
-    { $match: { "release.release.formats": { $in: ["CD"] } } },
+    { $match: { "release.release.formats": "CD" } },
 
     //add the discogs marketplace link
     { $addFields: {
@@ -73,7 +76,6 @@ db.spotify_users.aggregate([
     },
     
     //project to desired output
-    //TODO fix format Array in Output
     { $project: {
             "Track Title": "$release.title",
             "Artist Name": "$release.artist",

@@ -19,7 +19,7 @@ db.spotify_users.aggregate([
     //set the playlist tracks as new root to flatten the structure
     { $replaceRoot: { newRoot: "$spotify_user.playlists.playlist_tracks" } },
 
-    //lookup possible artists foreach track. If we can't find any objects here, this means the requested artist is not stored in our database.
+    //lookup possible artists foreach track.
     { $lookup: {
           from: "artists",
           localField: "artist_search_name",
@@ -42,7 +42,7 @@ db.spotify_users.aggregate([
         }
     },
     
-    //one last unwinding into all release documents
+    //unwinding into all release documents
     { $unwind: "$matched_artists.artist.tracks" },
 
     //restructure in clean document, we can filter on & project the wished fields from
@@ -56,14 +56,22 @@ db.spotify_users.aggregate([
     },
 
     //optional! filtering on year
-    { $match: { "release.release.released": {$gte: 1999}}},
+    { $match: { "release.release.released": {$gte: 1901}}},
 
+    //unwinding into release formats
+    { $unwind: "$release.release.formats" },
+    
     //optional filtering on format
-    { $match: { "release.release.formats": { $in: ["CD"] } } },
+    { $match: { "release.release.formats": "Vinyl" } },
 
-    //group same releases - need to check if we want to match by format aswell (so wie can differ if the user selects multiple formats in metabase)
+    //group same releases
     { $group: {
-        _id: { release_id: "$release.release.release_id", title: "$release.release.title" },
+        _id: {
+            "release_id": "$release.release.release_id",
+            "title": "$release.release.title",
+            "formats":"$release.release.formats",
+            "released":"$release.release.released" 
+        },
         no_of_tracks: {$sum: 1}
     }},
 
@@ -79,12 +87,11 @@ db.spotify_users.aggregate([
     { $sort: { "no_of_tracks": -1 } },
 
     //project to desired output
-    //TODO fix format & release year
     { $project: {
             "_id": 0,
             "Release Title": "$_id.title",
             "Format": "$_id.formats",
-            "Release Year": "$released",
+            "Release Year": "$_id.released",
             "Tracks from Playlist in Release": "$no_of_tracks",
             "Buy on Discogs": "$url"
         }

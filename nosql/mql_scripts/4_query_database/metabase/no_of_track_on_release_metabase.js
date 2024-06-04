@@ -9,7 +9,6 @@
     
     [[{ $match: { "spotify_user.playlists.playlist_tracks.artist_name": {{Artist}} } },]]
 
-
     { $replaceRoot: { newRoot: "$spotify_user.playlists.playlist_tracks" } },
 
     { $lookup: {
