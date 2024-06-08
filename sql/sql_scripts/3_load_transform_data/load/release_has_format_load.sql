@@ -1,7 +1,7 @@
 USE `DtoS`;
 SET NAMES utf8mb4;
 
-LOAD DATA INFILE '/var/lib/mysql-files/table_data/release_format.csv'
+LOAD DATA INFILE 'C:/Users/dbsstudent/Downloads/release_format.csv'
     INTO TABLE `release_has_format`
     FIELDS ENCLOSED BY '"'
     TERMINATED BY ';'

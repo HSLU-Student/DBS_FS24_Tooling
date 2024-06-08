@@ -1,7 +1,7 @@
 USE `DtoS`;
 SET NAMES utf8mb4;
 
-LOAD DATA INFILE '/var/lib/mysql-files/table_data/artist.csv'
+LOAD DATA INFILE 'C:/Users/dbsstudent/Downloads/artist.csv'
     INTO TABLE `artist`
     FIELDS OPTIONALLY ENCLOSED BY '"'
     TERMINATED BY ';'
